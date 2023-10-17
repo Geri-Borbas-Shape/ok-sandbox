@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "shpcomponentkit",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:shapehq/shpcomponentkit.git",
+      "state" : {
+        "revision" : "5a9b90d4c8affedc61b2716d2981732ffb14bd7b",
+        "version" : "6.0.0"
+      }
+    }
+  ],
+  "version" : 2
+}

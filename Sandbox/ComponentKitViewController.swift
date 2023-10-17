@@ -1,6 +1,6 @@
 //
 //  ComponentKitViewController.swift
-//  prototype
+//  Sandbox
 //
 //  Created by Geri Borbás on 09/10/2023.
 //
@@ -18,17 +18,13 @@ class ComponentKitViewController: UIViewController {
     }
     
     @objc func tap() {
-        
         let popover = OrangeViewController()
         present(OrangeViewController(), animated: true)
-        
         popover.response.onMainValue {
             print("popover.response.onMainValue: \($0)")
         }
     }
 }
-
-
 
 class OrangeViewController: UIViewController {
         
@@ -42,13 +38,11 @@ class OrangeViewController: UIViewController {
     }
     
     @objc func tap() {
-        async {
-            print("PopoverViewController.tap()")
-            response.returnValue("returnValue") // 1140
-        }
+        response.returnValue("returnValue") // 1140 occurence in main project
     }
     
     deinit {
-//        response.cancel() // 10
+        // Uncancelled responses are leaked.
+        // response.cancel() // 10 occurence in main project
     }
 }

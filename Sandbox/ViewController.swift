@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // Original issue https://shape.slack.com/archives/C05L0UZUDCM/p1696581067760889
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tap))
@@ -20,10 +22,12 @@ class ViewController: UIViewController {
         view.backgroundColor = .black
     }
     
+    // Tap opens ComponentKit view (Orange).
     @objc func tap() {
         present(ComponentKitViewController(), animated: true)
     }
     
+    // Long tap opens Combine view (Blue).
     @objc func longTap() {
         present(CombineViewController(), animated: true)
     }

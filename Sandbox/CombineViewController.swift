@@ -1,6 +1,6 @@
 //
 //  CombineViewController.swift
-//  prototype
+//  Sandbox
 //
 //  Created by Geri Borbás on 09/10/2023.
 //
@@ -10,7 +10,7 @@ import Combine
 
 class CombineViewController: UIViewController {
 
-    var subscribers = [AnyCancellable]()
+    var subscribers = [AnyCancellable]() // Called "Cancellable" for a reason
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +20,14 @@ class CombineViewController: UIViewController {
     }
     
     @objc func tap() {
-        
         let popover = BlueViewController()
         present(BlueViewController(), animated: true)
-        
-        popover.subject.sink {
-            print("popover.response.sink: \($0)")
-        }.store(in: &subscribers)
+        popover.subject
+            .sink {
+                print("popover.response.sink: \($0)")
+            }
+            // Combine forces you to be explicit about lifecycle.
+            .store(in: &subscribers)
     }
 }
 
@@ -42,7 +43,6 @@ class BlueViewController: UIViewController {
     }
     
     @objc func tap() {
-        print("BlueViewController.tap()")
         subject.send("returnValue")
     }
 }
